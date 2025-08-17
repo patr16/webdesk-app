@@ -1,3 +1,7 @@
+# ======================
+# IntelliJ/Android Studio
+# webdesk-app 18/08/2025
+# ======================
 *.iml
 .gradle
 /local.properties
@@ -7,9 +11,62 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+
+# ======================
+# macOS
+# ======================
 .DS_Store
+
+# ======================
+# Build
+# ======================
 /build
 /captures
 .externalNativeBuild
 .cxx
-local.properties
+
+# ======================
+# Keystore & secrets
+# ======================
+*.jks
+*.keystore
+*.properties
+!gradle.properties   # lascia solo il file di configurazione globale se presente
+
+# ======================
+# Logs & tmp
+# ======================
+*.log
+*.tmp
+*.temp
+
+# ======================
+# Packaging & outputs
+# ======================
+*.apk
+*.ap_ 
+*.aab
+*.obb
+
+# ======================
+# Generated files
+# ======================
+gen/
+bin/
+out/
+
+# ======================
+# Node / NPM (se presenti in progetto con frontend)
+# ======================
+node_modules/
+dist/
+build/
+.env
+
+# ======================
+# Misc
+# ======================
+.idea/gradle.xml
+.idea/dictionaries
+.idea/vcs.xml
+*.swp
