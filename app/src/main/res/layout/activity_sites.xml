@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:background="#EEEEEE">
+
+    <!-- Buttons -->
+
+    <ImageButton
+        android:id="@+id/ButtonColumns"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_rounded"
+        android:scaleType="fitCenter"
+        android:src="@drawable/site_table"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"/>
+
+    <ImageButton
+        android:id="@+id/ButtonWeb"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/button_rounded"
+        android:onClick="ButtonWeb"
+        android:scaleType="fitCenter"
+        android:src="@drawable/site_edit"
+        app:layout_constraintTop_toTopOf="@id/ButtonColumns"
+        app:layout_constraintStart_toEndOf="@id/ButtonColumns"
+        android:layout_marginStart="20dp"/>
+
+    <ImageButton
+        android:id="@+id/ButtonEditSite"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_rounded"
+        android:onClick="ButtonEditSite"
+        android:scaleType="fitCenter"
+        android:src="@drawable/site_web"
+        app:layout_constraintTop_toTopOf="@id/ButtonColumns"
+        app:layout_constraintStart_toEndOf="@id/ButtonColumns"
+        android:layout_marginStart="20dp"/>
+
+
+    <!-- TextView "Type" -->
+
+    <ImageButton
+        android:id="@+id/ButtonType2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="150dp"
+        android:background="@drawable/button_rounded"
+        android:onClick="ButtonType2"
+        android:scaleType="fitCenter"
+        android:src="@drawable/home2"
+        app:layout_constraintStart_toEndOf="@id/ButtonColumns"
+        app:layout_constraintTop_toTopOf="@id/ButtonColumns" />
+
+    <ImageButton
+        android:id="@+id/ButtonType1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_rounded"
+        android:onClick="ButtonType1"
+        android:scaleType="fitCenter"
+        android:src="@drawable/home1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/ButtonType2"
+        app:layout_constraintTop_toTopOf="@id/ButtonType2" />
+
+    <!-- RecyclerView per i siti -->
+    <TextView
+        android:id="@+id/textType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Type"
+        android:textColor="#444444"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ButtonColumns" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerSites"
+        android:layout_width="390dp"
+        android:layout_height="617dp"
+        android:clipToPadding="false"
+        android:padding="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textType"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

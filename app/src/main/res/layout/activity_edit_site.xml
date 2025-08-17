@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE">
+
+    <!-- Pulsanti -->
+    <ImageButton
+        android:id="@+id/ButtonHome"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_rounded"
+        android:onClick="ButtonHome"
+        android:scaleType="fitCenter"
+        android:src="@drawable/home1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ButtonSaveSite"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="120dp"
+        android:background="@drawable/button_rounded"
+        android:onClick="ButtonSaveSite"
+        android:scaleType="fitCenter"
+        android:src="@drawable/site_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ButtonDeleteSite"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/button_rounded"
+        android:onClick="ButtonDeleteSite"
+        android:scaleType="fitCenter"
+        android:src="@drawable/site_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ButtonRefreshNameIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="176dp"
+        android:background="@drawable/button_rounded"
+        android:scaleType="fitCenter"
+        android:src="@drawable/site_refresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ButtonPasteUrl"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="228dp"
+        android:background="@drawable/button_rounded"
+        android:onClick="ButtonPasteUrl"
+        android:scaleType="fitCenter"
+        android:src="@drawable/site_link"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewIcon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="4dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Icona del sito"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="@id/ButtonPasteUrl"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ScrollView -->
+    <ScrollView
+        android:layout_width="365dp"
+        android:layout_height="628dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ButtonHome">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <!-- ID -->
+            <TextView
+                android:id="@+id/labelId"
+                style="@style/FormLabel"
+                android:text="ID"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editId"
+                style="@style/FormEdit"
+                android:enabled="false"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelId"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/labelId" />
+
+            <!-- Nome -->
+            <TextView
+                android:id="@+id/labelName"
+                style="@style/FormLabel"
+                android:text="Nome"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelId" />
+
+            <EditText
+                android:id="@+id/editName"
+                style="@style/FormEdit"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelName"
+                app:layout_constraintTop_toTopOf="@id/labelName" />
+
+            <!-- Url -->
+            <TextView
+                android:id="@+id/labelUrl"
+                style="@style/FormLabel"
+                android:text="URL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelName" />
+
+            <EditText
+                android:id="@+id/editUrl"
+                style="@style/FormEdit"
+                android:inputType="textUri"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelUrl"
+                app:layout_constraintTop_toTopOf="@id/labelUrl" />
+
+            <!-- Icon -->
+            <TextView
+                android:id="@+id/labelIcon"
+                style="@style/FormLabel"
+                android:text="Icona"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelUrl" />
+
+            <EditText
+                android:id="@+id/editIcon"
+                style="@style/FormEdit"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelIcon"
+                app:layout_constraintTop_toTopOf="@id/labelIcon" />
+
+            <!-- Type1 -->
+            <TextView
+                android:id="@+id/labelType1"
+                style="@style/FormLabel"
+                android:text="Tipo 1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelIcon" />
+
+            <!-- larghezza lista dropDownWidth-->
+            <AutoCompleteTextView
+                android:id="@+id/editType1"
+                style="@style/FormEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:dropDownWidth="200dp"
+                android:dropDownHeight="wrap_content"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelType1"
+                app:layout_constraintTop_toTopOf="@id/labelType1" />
+
+            <ImageButton
+                android:id="@+id/buttonSelectType1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Scegli tipo"
+                android:src="@android:drawable/ic_menu_more"
+                app:layout_constraintBottom_toBottomOf="@id/editType1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/editType1" />
+
+            <!-- Type2 -->
+            <TextView
+                android:id="@+id/labelType2"
+                style="@style/FormLabel"
+                android:text="Tipo 2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelType1" />
+
+            <AutoCompleteTextView
+                android:id="@+id/editType2"
+                style="@style/FormEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:dropDownWidth="200dp"
+                android:dropDownHeight="wrap_content"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelType2"
+                app:layout_constraintTop_toTopOf="@id/labelType2" />
+
+            <ImageButton
+                android:id="@+id/buttonSelectType2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Scegli tipo"
+                android:src="@android:drawable/ic_menu_more"
+                app:layout_constraintBottom_toBottomOf="@id/editType2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/editType2" />
+
+            <!-- Order1 -->
+            <TextView
+                android:id="@+id/labelOrder1"
+                style="@style/FormLabel"
+                android:text="Ordine 1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelType2" />
+
+            <EditText
+                android:id="@+id/editOrder1"
+                style="@style/FormEdit"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelOrder1"
+                app:layout_constraintTop_toTopOf="@id/labelOrder1" />
+
+            <!-- Order2 -->
+            <TextView
+                android:id="@+id/labelOrder2"
+                style="@style/FormLabel"
+                android:text="Ordine 2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelOrder1" />
+
+            <EditText
+                android:id="@+id/editOrder2"
+                style="@style/FormEdit"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelOrder2"
+                app:layout_constraintTop_toTopOf="@id/labelOrder2" />
+
+            <!-- DateCreate -->
+            <TextView
+                android:id="@+id/labelDateCreate"
+                style="@style/FormLabel"
+                android:text="Data creazione"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelOrder2" />
+
+            <EditText
+                android:id="@+id/editDateCreate"
+                style="@style/FormEdit"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelDateCreate"
+                app:layout_constraintTop_toTopOf="@id/labelDateCreate" />
+
+            <!-- DateVisit -->
+            <TextView
+                android:id="@+id/labelDateVisit"
+                style="@style/FormLabel"
+                android:text="Data visita"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelDateCreate" />
+
+            <EditText
+                android:id="@+id/editDateVisit"
+                style="@style/FormEdit"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelDateVisit"
+                app:layout_constraintTop_toTopOf="@id/labelDateVisit" />
+
+            <!-- TextColor -->
+            <TextView
+                android:id="@+id/labelTextColor"
+                style="@style/FormLabel"
+                android:text="TextColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelDateVisit" />
+
+            <EditText
+                android:id="@+id/editTextColor"
+                style="@style/FormEdit"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelTextColor"
+                app:layout_constraintTop_toTopOf="@id/labelTextColor" />
+
+            <!-- Background -->
+            <TextView
+                android:id="@+id/labelBackground"
+                style="@style/FormLabel"
+                android:text="Background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelTextColor" />
+
+            <EditText
+                android:id="@+id/editBackground"
+                style="@style/FormEdit"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelBackground"
+                app:layout_constraintTop_toTopOf="@id/labelBackground" />
+
+            <!-- Frequency -->
+            <TextView
+                android:id="@+id/labelFrequency"
+                style="@style/FormLabel"
+                android:text="Frequency"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelBackground" />
+
+            <EditText
+                android:id="@+id/editFrequency"
+                style="@style/FormEdit"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelFrequency"
+                app:layout_constraintTop_toTopOf="@id/labelFrequency" />
+
+            <!-- Note -->
+            <TextView
+                android:id="@+id/labelNote"
+                style="@style/FormLabel"
+                android:text="Note"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelFrequency" />
+
+            <EditText
+                android:id="@+id/editNote"
+                style="@style/FormEdit"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/labelNote"
+                app:layout_constraintTop_toTopOf="@id/labelNote" />
+
+            <!-- Flag1 -->
+            <TextView
+                android:id="@+id/labelFlag1"
+                style="@style/FormLabel"
+                android:text="Flag1 (new site)"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editNote" />
+
+            <EditText
+                android:id="@+id/editFlag1"
+                style="@style/FormEdit"
+                android:layout_width="30dp"
+                app:layout_constraintHorizontal_bias="0.042"
+                android:inputType="number"
+
+                app:layout_constraintStart_toEndOf="@id/labelFlag1"
+                app:layout_constraintTop_toTopOf="@id/labelFlag1" />
+
+            <!-- Flag2 -->
+
+            <TextView
+                android:id="@+id/labelFlag2"
+                style="@style/FormLabel"
+                android:text="Flag2 (no use)"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelFlag1" />
+
+            <EditText
+                android:id="@+id/editFlag2"
+                style="@style/FormEdit"
+                android:layout_width="30dp"
+                android:inputType="number"
+
+                app:layout_constraintHorizontal_bias="0.084"
+                app:layout_constraintStart_toEndOf="@id/labelFlag2"
+                app:layout_constraintTop_toTopOf="@id/labelFlag2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:layout_marginBottom="8dp"> <!-- Distanza tra record -->
+
+    <TextView
+        android:id="@+id/idLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/dateLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/idLog"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/typeLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/dateLog"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/statusLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/typeLog"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Riga 2: NOTE -->
+    <TextView
+        android:id="@+id/noteLog"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Note"
+        android:layout_marginStart="5dp"
+        android:paddingTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idLog"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

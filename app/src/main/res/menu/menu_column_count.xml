@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/col_2" android:title="2 colonne" />
+    <item android:id="@+id/col_3" android:title="3 colonne" />
+    <item android:id="@+id/col_4" android:title="4 colonne" />
+</menu>

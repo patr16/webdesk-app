@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="0dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+    <!-- layout_margin: separation between the cards -->
+    <!-- cardElevation: border card -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:padding="10dp"
+        android:background="@drawable/card_border">
+
+        <!-- Nome sito centrato orizzontalmente in alto -->
+        <TextView
+            android:id="@+id/textSiteName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:text="Nome Sito"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp" />
+
+        <!-- Icona centrata orizzontalmente in basso -->
+        <ImageView
+            android:id="@+id/iconSite"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="4dp"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/icon_site" />
+
+        <!-- Frequency in basso a destra -->
+        <TextView
+            android:id="@+id/textFrequency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="6dp"
+            android:text="0"
+            android:textSize="10sp"
+            android:textColor="@android:color/white"
+            android:textStyle="italic" />
+    </FrameLayout>
+</androidx.cardview.widget.CardView>
+
+
+
