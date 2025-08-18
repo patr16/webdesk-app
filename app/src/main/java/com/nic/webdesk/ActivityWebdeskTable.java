@@ -144,6 +144,7 @@ public class ActivityWebdeskTable extends AppCompatActivity {
         //--------------------------------------------- Update headerClickListener
         // nuovo gestione clic header dinamico
         View.OnClickListener headerClickListener = view -> {
+            System.out.println("@@@ 147 listner - Clicked header");
             TextView textView = (TextView) view;
 
             // Ottieni il testo attuale del titolo (es: "Url 1↑" o "Icon 2↓")
@@ -309,67 +310,63 @@ public class ActivityWebdeskTable extends AppCompatActivity {
 
     //----------------------------------------------------------------------- Column Sorting
     private void applySorting() {
+        System.out.println("@@@ 313 applySorting start, size: " + sortPriority.size());
         if (sortPriority.isEmpty()) {
-            return;
+            return; // nessun ordinamento
         }
 
         Comparator<WebdeskItem> finalComp = null;
 
         for (SortEntry entry : sortPriority) {
+            // pulizia del nome della colonna
+            String pure = entry.columnName.replaceAll("\\d+\\s*[↑↓]?", "").trim();
+
             Comparator<WebdeskItem> comp = null;
 
-            switch (entry.columnName) {
+            switch (pure) {
                 case "Type1":
-                    comp = Comparator.comparing(
-                            WebdeskItem::getType1,
-                            Comparator.nullsLast(String::compareToIgnoreCase)
-                    );
+                    comp = Comparator.comparing(WebdeskItem::getType1, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
                     break;
                 case "Type2":
-                    comp = Comparator.comparing(
-                            WebdeskItem::getType2,
-                            Comparator.nullsLast(String::compareToIgnoreCase)
-                    );
+                    comp = Comparator.comparing(WebdeskItem::getType2, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
                     break;
                 case "Order1":
-                    comp = Comparator.comparing(item -> item.getOrder1() != null ? item.getOrder1() : Integer.MAX_VALUE
-                    );
+                    comp = Comparator.comparing(item -> item.getOrder1() != null ? item.getOrder1() : Integer.MAX_VALUE);
                     break;
                 case "Order2":
-                    comp = Comparator.comparing(item -> item.getOrder2() != null ? item.getOrder2() : Integer.MAX_VALUE
-                    );
+                    comp = Comparator.comparing(item -> item.getOrder2() != null ? item.getOrder2() : Integer.MAX_VALUE);
                     break;
                 case "Flag1":
-                    comp = Comparator.comparing(item -> item.getFlag1() != null ? item.getFlag1() : 0
-                    );
+                    comp = Comparator.comparing(item -> item.getFlag1() != null ? item.getFlag1() : 0);
                     break;
                 case "Flag2":
-                    comp = Comparator.comparing(item -> item.getFlag2() != null ? item.getFlag2() : 0
-                    );
+                    comp = Comparator.comparing(item -> item.getFlag2() != null ? item.getFlag2() : 0);
                     break;
+
+                // nuovi campi:
                 case "Url":
-                    comp = Comparator.comparing(WebdeskItem::getUrl, Comparator.nullsLast(String::compareToIgnoreCase));
+                    comp = Comparator.comparing(WebdeskItem::getUrl, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
                     break;
                 case "Icon":
-                    comp = Comparator.comparing(WebdeskItem::getIcon, Comparator.nullsLast(String::compareToIgnoreCase));
+                    comp = Comparator.comparing(WebdeskItem::getIcon, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
                     break;
                 case "Note":
-                    comp = Comparator.comparing(WebdeskItem::getNote, Comparator.nullsLast(String::compareToIgnoreCase));
+                    comp = Comparator.comparing(WebdeskItem::getNote, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
                     break;
                 case "DateCreate":
-                    comp = Comparator.comparing(WebdeskItem::getDateCreate, Comparator.nullsLast(String::compareToIgnoreCase));
+                    comp = Comparator.comparing(WebdeskItem::getDateCreate, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
                     break;
                 case "DateVisit":
-                    comp = Comparator.comparing(WebdeskItem::getDateVisit, Comparator.nullsLast(String::compareToIgnoreCase));
+                    comp = Comparator.comparing(WebdeskItem::getDateVisit, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
                     break;
                 case "Frequency":
                     comp = Comparator.comparing(item -> item.getFrequency() != null ? item.getFrequency() : Integer.MAX_VALUE);
                     break;
                 case "TextColor":
-                    comp = Comparator.comparing(WebdeskItem::getTextColor, Comparator.nullsLast(String::compareToIgnoreCase));
+                    comp = Comparator.comparing(WebdeskItem::getTextColor, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
                     break;
                 case "Background":
-                    comp = Comparator.comparing(WebdeskItem::getBackground, Comparator.nullsLast(String::compareToIgnoreCase));
+                    comp = Comparator.comparing(WebdeskItem::getBackground, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
                     break;
             }
 
@@ -377,11 +374,15 @@ public class ActivityWebdeskTable extends AppCompatActivity {
                 if (entry.state == SortState.DESC) {
                     comp = comp.reversed();
                 }
+
+                System.out.println("@@@ 378 applySorting start, size: " + sortPriority.size());
                 if (finalComp == null) {
                     finalComp = comp;
+                    System.out.println("@@@ 378 applySorting sorted!");
                 } else {
                     finalComp = finalComp.thenComparing(comp);
                 }
+                System.out.println("@@@ 385 applySorting end");
             }
         }
 
@@ -389,10 +390,10 @@ public class ActivityWebdeskTable extends AppCompatActivity {
             Collections.sort(webdeskList, finalComp);
             leftAdapter.notifyDataSetChanged();
             rightAdapter.notifyDataSetChanged();
+            refreshHeaderTitles();
         }
-
-        refreshHeaderTitles();
     }
+
 
     //----------------------------------------------------------------------- Column Sorting
     // Necessario per gestire le fecce che indicano la direzione dell'ordinamento in the header of columns
