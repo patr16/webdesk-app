@@ -5,12 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageButton
+    android:id="@+id/buttonChooseColumns"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:src="@drawable/table"
+    android:scaleType="fitCenter"
+    android:contentDescription="Choose Columns"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:padding="8dp"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/buttonResetSort"
+    android:layout_marginEnd="4dp"/>
+
     <!-- Pulsante Elimina in alto a destra -->
     <ImageButton
         android:id="@+id/buttonDeleteRow"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/site_delete"
+        android:scaleType="fitCenter"
         android:contentDescription="Delete Row"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,6 +1,6 @@
 # ======================
 # IntelliJ/Android Studio
-# webdesk-app 18/08/2025
+# webdesk-app 19/08/2025
 # ======================
 *.iml
 .gradle
@@ -62,6 +62,11 @@ node_modules/
 dist/
 build/
 .env
+
+# ======================
+# Local databases
+# ======================
+*.db
 
 # ======================
 # Misc
