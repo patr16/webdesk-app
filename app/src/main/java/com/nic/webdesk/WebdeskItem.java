@@ -1,5 +1,7 @@
 package com.nic.webdesk;
 
+//------------------------------------------------
+// Bean - Data Model
 public class WebdeskItem {
 
     private int id;

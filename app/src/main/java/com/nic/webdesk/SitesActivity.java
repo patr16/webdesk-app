@@ -38,7 +38,7 @@ public class SitesActivity extends AppCompatActivity {
     //private GridLayoutManager gridLayoutManager;
     //private int fontSizeSp;
 
-    ImageButton buttonWeb, buttonEditSite, buttonType2;
+    ImageButton buttonWeb, buttonEditSite, buttonType2, buttonTable;
     public static boolean isEditMode = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,11 @@ public class SitesActivity extends AppCompatActivity {
             buttonType2.setVisibility(View.VISIBLE);
         }else{
             buttonType2.setVisibility(View.GONE);
-            }
+        }
+        //------------------------------------------ button to WebdeskTableActivity filter Type1
+        buttonTable = findViewById(R.id.ButtonTable);
+        buttonTable.setOnClickListener(v ->ButtonTable());
+
         //------------------------------------------ loads the data
         if (type1 == null || type1.isEmpty()) {
             Alert.alertDialog(this, "Gestione Errori", "Parametri mancanti", 20000);
@@ -150,6 +154,14 @@ public class SitesActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    //--------------------------------------------------------- Button Table
+    public void ButtonTable(){
+        if (type1 == null || type1.isEmpty()) { return; }
+        Intent intentToWebdeskTable = new Intent(this, WebdeskTableActivity.class);
+        intentToWebdeskTable.putExtra("FILTER_TYPE1", type1);
+        startActivity(intentToWebdeskTable);
+    }
+
 }
 
 

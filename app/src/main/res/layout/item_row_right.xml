@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- wrap_content è importante per lo scroll orizzontale -->
+<!-- Altezza fissa della riga, come l'originale -->
+<!-- Usa paddingStart/End per LTR/RTL
+ android:layout_height="36dp" Altezza di default, buona per le righe di dati -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="36dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="2dp"
+    android:paddingEnd="2dp">
+
+    <!--
+        Questo LinearLayout sarà il contenitore per le nostre colonne dinamiche.
+        Lo riempiremo programmaticamente in RightAdapter.onCreateViewHolder e RightAdapter.onBindViewHolder.
+        L'ID è importante per trovarlo nel codice dell'adapter.
+    -->
+    <!--layout_height="match_parent" Occupa tutta l'altezza del genitore -->
+<LinearLayout
+    android:id="@+id/dynamic_columns_container"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <!-- Le colonne (EditText, CheckBox) verranno aggiunte qui programmaticamente -->
+    <!-- Non mettere nessun figlio qui dentro manualmente -->
+
+    </LinearLayout>
+
+    </LinearLayout>

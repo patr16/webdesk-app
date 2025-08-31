@@ -61,11 +61,20 @@
         </activity>
 
         <activity
-            android:name=".ActivityWebdeskTable"
+            android:name=".oldActivityWebdeskTableCopy2"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Webdesk.NoActionBar">
         </activity>
+
+
+        <activity
+            android:name=".WebdeskTableActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Webdesk.NoActionBar">
+        </activity>
+
 
         <activity
             android:name=".ToolActivity"

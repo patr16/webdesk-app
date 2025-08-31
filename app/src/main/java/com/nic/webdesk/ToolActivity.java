@@ -1,20 +1,15 @@
 package com.nic.webdesk;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
@@ -159,13 +154,6 @@ public class ToolActivity extends AppCompatActivity {
             Alert.alertDialog(this, "Errore", "Errore durante esportazione: " + e.getMessage(), 15000);
         }
     }
-
-    public void onTableButton(View view) {
-        Intent intent = new Intent(ToolActivity.this, ActivityWebdeskTable.class);
-        startActivity(intent);
-        finish();
-    }
-
 
     //========================================================= ButtonHome
     public void onHomeButton(View view) {

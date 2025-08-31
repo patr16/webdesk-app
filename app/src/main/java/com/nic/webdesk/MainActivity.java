@@ -1,24 +1,22 @@
 package com.nic.webdesk;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-//import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 /*--------------------------------------------------------------------------------------
+Version history
+1.0-31.08.25 - first version
+The version is reported in view activity_tool.xml
+--------------------------------------------------------------------------------------
+
 1 - DAO				        typeList = dao.type2Webdesk(type1);
 2 - Adapter			        adapter = new TypeAdapter(typeList, this, typeLevel);
 3 - RecyclerView		    recyclerView.setAdapter(adapter);
@@ -33,10 +31,6 @@ public class MainActivity extends AppCompatActivity implements OnTypeClickListen
     private List<WebdeskType> typeList;
     private WebdeskDAO dao;
     private int typeLevel = 1;
-    //private int fontSizeSp = 16; // default value necessary also for RecyclerViewConfigurator class
-    //----------------------------- persistence colums number
-    private static final String PREFS_NAME = "webdesk_prefs";
-    private static final String KEY_TYPE_COLUMN_COUNT = "column_count";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +38,11 @@ public class MainActivity extends AppCompatActivity implements OnTypeClickListen
         setContentView(R.layout.activity_main);
 
         //-------------------------------- recyclerView and title (textType1)
-        recyclerView = findViewById(R.id.recyclerTypes);    // also for RecyclerViewConfigurator
+        recyclerView = findViewById(R.id.recyclerTypes);            // also for RecyclerViewConfigurator
         ImageButton btnColumns = findViewById(R.id.ButtonColumns);  // for RecyclerViewConfigurator
 
         //-------------------------------- DAO
         dao = new WebdeskDAO(this);
-
 
         //-------------------------------- adapter for recyclerview passandogli la lista
         /*   TypeAdapter receives:
@@ -79,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements OnTypeClickListen
 
         //-------------------------------- carica iniziale Type1
         loadTypes(typeLevel);
-        System.out.println("@@@ MainActivity 84 - carica iniziale Type1: " + typeLevel);
 
         //-------------------------------- button new site
         findViewById(R.id.ButtonNewSite).setOnClickListener(v -> {
@@ -107,20 +99,19 @@ public class MainActivity extends AppCompatActivity implements OnTypeClickListen
     @Override
     public void onTypeClicked(WebdeskType type) {
         if (typeLevel == 1) {
-            System.out.println("@@@ MainActivity 146 - type1: " + type.getType1() + " type2: " + type.getType2() );
+
             Intent intent;
             intent = new Intent(MainActivity.this, SitesActivity.class);
             intent.putExtra("type1", type.getType1());
             intent.putExtra("type2", "");
-            intent.putExtra("buttonType2Visible", false); // NON VIENE PIU' USATO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //intent.putExtra("buttonType2Visible", false); // NON VIENE PIU' USATO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             startActivity(intent);
             finish();
         } else if (typeLevel == 2) {
-            System.out.println("@@@ MainActivity 156 - type1: " + type.getType1() + " type2: " + type.getType2() );
             Intent intent;
             intent = new Intent(MainActivity.this, Type2Activity.class);
             intent.putExtra("type1", type.getType1());
-            intent.putExtra("type2", type.getType2()); // NON SERVE!!!!!!!!!!!!!!!!!!!
+            //intent.putExtra("type2", type.getType2()); // NON SERVE!!!!!!!!!!!!!!!!!!!
             startActivity(intent);
             finish();
         }
@@ -137,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements OnTypeClickListen
 
     //------------------------------------------------------------ ButtonTable
     public void ButtonTable(View view) {
-        Intent intent = new Intent(MainActivity.this, ActivityWebdeskTable.class);
+        Intent intent = new Intent(MainActivity.this, WebdeskTableActivity.class);
         startActivity(intent);
     }
 

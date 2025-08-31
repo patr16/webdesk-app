@@ -38,35 +38,54 @@ android:background="@color/yellow1BackgroundColor">
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.039" />
 
-<TextView
-    android:id="@+id/textViewLogView"
-    android:layout_width="250dp"
-    android:layout_height="41dp"
-    android:gravity="left"
-    android:text="log view"
-    android:textSize="24sp"
-    android:textStyle="normal"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.906"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.331" />
+    <TextView
+        android:id="@+id/textViewLogView"
+        android:layout_width="250dp"
+        android:layout_height="41dp"
+        android:gravity="left"
+        android:text="log view"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.292" />
 
-<TextView
-    android:id="@+id/textViewCreateNewUser"
-    android:layout_width="250dp"
-    android:layout_height="41dp"
-    android:gravity="left"
-    android:text="create new user"
-    android:textSize="24sp"
-    android:textStyle="normal"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.906"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.181" />
+    <ImageButton
+        android:id="@+id/ButtoLogViews"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/button_layout"
+        android:contentDescription="Visualizza i log di accesso"
+        android:onClick="onLogViewButton"
+        android:scaleType="fitCenter"
+        android:src="@drawable/newpw"
+        android:text="Cliccami"
+        android:tooltipText="Tabella dei Log"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.286" />
+
+    <TextView
+        android:id="@+id/textViewCreateNewUser"
+        android:layout_width="250dp"
+        android:layout_height="41dp"
+        android:gravity="left"
+        android:text="create new user"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.169" />
 
     <ImageButton
         android:id="@+id/ButtonNewUser"
@@ -82,10 +101,10 @@ android:background="@color/yellow1BackgroundColor">
         android:tooltipText="Crea un nuovo Utente"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.174" />
+        app:layout_constraintVertical_bias="0.162" />
 
 
     <TextView
@@ -101,25 +120,7 @@ android:background="@color/yellow1BackgroundColor">
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.513" />
-    <ImageButton
-        android:id="@+id/ButtonTable"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/button_layout"
-        android:contentDescription="Importa Database"
-        android:onClick="onTableButton"
-        android:scaleType="fitCenter"
-        android:src="@drawable/newpw"
-        android:text="Cliccami"
-        android:tooltipText="Importa il Data Base"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.514" />
+        app:layout_constraintVertical_bias="0.425" />
 
     <ImageButton
         android:id="@+id/ButtonTableImport"
@@ -135,10 +136,25 @@ android:background="@color/yellow1BackgroundColor">
         android:tooltipText="Importa il Data Base"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.424" />
+        app:layout_constraintVertical_bias="0.426" />
+
+    <TextView
+        android:id="@+id/textAllViewTableExport"
+        android:layout_width="250dp"
+        android:layout_height="42dp"
+        android:gravity="left"
+        android:text="all site table export"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.682" />
 
     <TextView
         android:id="@+id/textViewNewTableExport"
@@ -150,10 +166,10 @@ android:background="@color/yellow1BackgroundColor">
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.696" />
+        app:layout_constraintVertical_bias="0.55" />
 
     <ImageButton
         android:id="@+id/ButtonNewTableExport"
@@ -169,25 +185,10 @@ android:background="@color/yellow1BackgroundColor">
         android:tooltipText="Importa il Data Base"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.701" />
-
-    <TextView
-        android:id="@+id/textAllViewTableExport"
-        android:layout_width="250dp"
-        android:layout_height="42dp"
-        android:gravity="left"
-        android:text="all site table export"
-        android:textSize="24sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.906"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.828" />
+        app:layout_constraintVertical_bias="0.549" />
 
     <ImageButton
         android:id="@+id/ButtonAllTableExport"
@@ -203,30 +204,26 @@ android:background="@color/yellow1BackgroundColor">
         android:tooltipText="Importa il Data Base"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.824" />
+        app:layout_constraintVertical_bias="0.673" />
 
-    <ImageButton
-    android:id="@+id/ButtoLogViews"
-    android:layout_width="60dp"
-    android:layout_height="60dp"
-    android:adjustViewBounds="true"
-    android:background="@drawable/button_layout"
-    android:contentDescription="Visualizza i log di accesso"
-    android:onClick="onLogViewButton"
-    android:scaleType="fitCenter"
-    android:src="@drawable/newpw"
-    android:text="Cliccami"
-    android:tooltipText="Tabella dei Log"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.045"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.327" />
 
+    <TextView
+        android:id="@+id/textAutoLog"
+        android:layout_width="250dp"
+        android:layout_height="42dp"
+        android:gravity="left"
+        android:text="auto loggin"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.799" />
 
     <ToggleButton
         android:id="@+id/ButtonAutoLog"
@@ -241,23 +238,23 @@ android:background="@color/yellow1BackgroundColor">
         android:tooltipText="Auto loggin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.953" />
+        app:layout_constraintVertical_bias="0.804" />
 
     <TextView
-        android:id="@+id/textAutoLog"
+        android:id="@+id/appVersion"
         android:layout_width="250dp"
-        android:layout_height="42dp"
+        android:layout_height="21dp"
         android:gravity="left"
-        android:text="auto loggin"
-        android:textSize="24sp"
+        android:text="version 1.0-31.08.25"
+        android:textSize="18sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944" />
+        app:layout_constraintVertical_bias="0.99" />
 </androidx.constraintlayout.widget.ConstraintLayout>

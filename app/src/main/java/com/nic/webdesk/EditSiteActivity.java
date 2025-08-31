@@ -43,9 +43,8 @@ public class EditSiteActivity extends AppCompatActivity {
     private ImageButton buttonSelectType2;
     private EditText editName, editUrl, editIcon, editNote;
     private EditText editOrder1, editOrder2, editDateCreate, editDateVisit, editFrequency;
-    private EditText editTextColor, editBackground, editFlag1, editFlag2;
+    private EditText editTextColor, editBackground, checkFlag1, editFlag2;
     private ImageView imageViewIcon;
-
 
     private int siteId;
     private WebdeskDAO webdeskDao;
@@ -132,7 +131,7 @@ public class EditSiteActivity extends AppCompatActivity {
         editFrequency = findViewById(R.id.editFrequency);
         editTextColor = findViewById(R.id.editTextColor);
         editBackground = findViewById(R.id.editBackground);
-        editFlag1 = findViewById(R.id.editFlag1);
+        checkFlag1 = findViewById(R.id.checkFlag1);
         editFlag2 = findViewById(R.id.editFlag2);
 
 
@@ -391,7 +390,7 @@ public class EditSiteActivity extends AppCompatActivity {
         editFrequency.setText(String.valueOf(site.getFrequency()));
         editTextColor.setText(site.getTextColor());
         editBackground.setText(site.getBackground());
-        editFlag1.setText(String.valueOf(site.getFlag1()));
+        checkFlag1.setText(String.valueOf(site.getFlag1()));
         editFlag2.setText(String.valueOf(site.getFlag2()));
     }
 
@@ -415,7 +414,7 @@ public class EditSiteActivity extends AppCompatActivity {
         site.setFrequency(parseInt(editFrequency));
         site.setTextColor(editTextColor.getText().toString());
         site.setBackground(editBackground.getText().toString());
-        site.setFlag1(parseInt(editFlag1));
+        site.setFlag1(parseInt(checkFlag1));
         site.setFlag2(parseInt(editFlag2));
         return site;
     }

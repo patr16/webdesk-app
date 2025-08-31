@@ -98,7 +98,7 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.SiteViewHolder
         //------------------------------------------------ onClick
          // goto web site / edit card
         holder.itemView.setOnClickListener(v -> {
-            System.out.println("@@@ - 95  url: " + site.getUrl() + " - id: " +  site.getId());
+            //System.out.println("@@@ - 95  url: " + site.getUrl() + " - id: " +  site.getId());
             // Azione click - apri browser con URL
             if (!SitesActivity.isEditMode) {
                 String url = site.getUrl();

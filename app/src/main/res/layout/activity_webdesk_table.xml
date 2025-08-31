@@ -5,72 +5,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Buttons -->
     <ImageButton
-    android:id="@+id/buttonChooseColumns"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:src="@drawable/table"
-    android:scaleType="fitCenter"
-    android:contentDescription="Choose Columns"
-    android:background="?attr/selectableItemBackgroundBorderless"
-    android:padding="8dp"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintEnd_toStartOf="@id/buttonResetSort"
-    android:layout_marginEnd="4dp"/>
-
-    <!-- Pulsante Elimina in alto a destra -->
-    <ImageButton
-        android:id="@+id/buttonDeleteRow"
+        android:id="@+id/buttonChooseColumns"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/site_delete"
-        android:scaleType="fitCenter"
-        android:contentDescription="Delete Row"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="8dp"
-        android:background="?attr/selectableItemBackgroundBorderless"/>
-
-    <ImageButton
-        android:id="@+id/buttonHome"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="60dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Home"
+        android:contentDescription="Choose Columns"
         android:padding="8dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/home1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/table"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonWeb"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_bias="0" />
 
-
-    <!-- HEADER SINISTRO -->
+    <ImageButton
+        android:id="@+id/buttonWeb"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Web Site"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/web"
+        app:layout_constraintTop_toTopOf="@id/buttonChooseColumns"
+        app:layout_constraintStart_toEndOf="@id/buttonChooseColumns"
+        app:layout_constraintEnd_toStartOf="@+id/buttonResetSort"
+        android:layout_marginStart="8dp" />
 
     <ImageButton
         android:id="@+id/buttonResetSort"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="152dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Reset Sort"
         android:padding="8dp"
-        android:src="@drawable/site_refresh"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/site_refresh"
+        app:layout_constraintTop_toTopOf="@id/buttonChooseColumns"
+        app:layout_constraintStart_toEndOf="@id/buttonWeb"
+        app:layout_constraintEnd_toStartOf="@+id/buttonHideKeyboard"
+        android:layout_marginStart="8dp" />
 
+    <ImageButton
+        android:id="@+id/buttonHideKeyboard"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Hide Keyboard"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/keyboard"
+        app:layout_constraintTop_toTopOf="@id/buttonChooseColumns"
+        app:layout_constraintStart_toEndOf="@id/buttonResetSort"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDeleteRow"
+        android:layout_marginStart="8dp" />
+
+    <ImageButton
+        android:id="@+id/buttonDeleteRow"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Delete Row"
+        android:scaleType="fitCenter"
+        android:src="@drawable/site_delete"
+        app:layout_constraintTop_toTopOf="@id/buttonChooseColumns"
+        app:layout_constraintStart_toEndOf="@id/buttonHideKeyboard"
+        app:layout_constraintEnd_toStartOf="@+id/buttonHome"
+        android:layout_marginStart="8dp" />
+
+    <ImageButton
+        android:id="@+id/buttonHome"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Home"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/home1"
+        app:layout_constraintTop_toTopOf="@id/buttonChooseColumns"
+        app:layout_constraintStart_toEndOf="@id/buttonDeleteRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"  />
+
+    <!-- HEADER SINISTRO -->
     <TextView
         android:id="@+id/headerLeft"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Name"
         android:textStyle="bold"
         android:gravity="center"
+        android:maxLines="2"
         android:background="#DDDDDD"
-        android:padding="4dp"
+        android:padding="8dp"
         app:layout_constraintTop_toBottomOf="@+id/buttonDeleteRow"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -86,69 +119,16 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- Riga header colonne destre -->
-        <LinearLayout
-            android:id="@+id/headerRightLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <LinearLayout
+        android:id="@+id/rightTableHeaderLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <!-- I TextView dell'header verranno aggiunti qui programmaticamente -->
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/headerType1"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Type1"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:background="#DDDDDD"/>
-
-            <TextView
-                android:id="@+id/headerType2"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Type2"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:background="#DDDDDD"/>
-
-            <TextView
-                android:id="@+id/headerOrder1"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Order1"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:background="#DDDDDD"/>
-
-            <TextView
-                android:id="@+id/headerOrder2"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Order2"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:background="#DDDDDD"/>
-
-            <TextView
-                android:id="@+id/headerFlag1"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="Flag1"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:gravity="center"
-                android:background="#DDDDDD"/>
-
-            <TextView
-                android:id="@+id/headerFlag2"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="Flag2"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:gravity="center"
-                android:background="#DDDDDD"/>
-        </LinearLayout>
-    </HorizontalScrollView>
+</HorizontalScrollView>
 
     <!-- RecyclerView sinistro -->
     <androidx.recyclerview.widget.RecyclerView
@@ -160,23 +140,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Scroll e RecyclerView destro -->
+    <!-- RECYCLER VIEW DESTRA -->
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:scrollbars="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/headerScrollView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recyclerViewLeft"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/headerScrollView"
+        app:layout_constraintStart_toEndOf="@id/recyclerViewLeft"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewRight"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:overScrollMode="never" />
+            android:layout_height="match_parent"/>
     </HorizontalScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -371,7 +371,7 @@
                 app:layout_constraintTop_toBottomOf="@id/editNote" />
 
             <EditText
-                android:id="@+id/editFlag1"
+                android:id="@+id/checkFlag1"
                 style="@style/FormEdit"
                 android:layout_width="30dp"
                 app:layout_constraintHorizontal_bias="0.042"

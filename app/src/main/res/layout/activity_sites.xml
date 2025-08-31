@@ -5,35 +5,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     android:background="#EEEEEE">
 
     <!-- Buttons -->
 
+
+    <!-- 1. ButtonColumns (Inizio della catena orizzontale) -->
     <ImageButton
         android:id="@+id/ButtonColumns"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/button_rounded"
         android:scaleType="fitCenter"
-        android:src="@drawable/site_table"
+        android:src="@drawable/table"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_chainStyle="spread"/>
 
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ButtonWeb"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Gruppo sovrapposto: ButtonWeb e ButtonEditSite -->
+    <!-- ButtonWeb (SOTTO) -->
     <ImageButton
         android:id="@+id/ButtonWeb"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="0dp"
+        
         android:background="@drawable/button_rounded"
         android:onClick="ButtonWeb"
         android:scaleType="fitCenter"
         android:src="@drawable/site_edit"
-        app:layout_constraintTop_toTopOf="@id/ButtonColumns"
-        app:layout_constraintStart_toEndOf="@id/ButtonColumns"
-        android:layout_marginStart="20dp"/>
+    app:layout_constraintTop_toTopOf="@id/ButtonColumns"
+    app:layout_constraintStart_toEndOf="@id/ButtonColumns"
+    app:layout_constraintEnd_toStartOf="@+id/ButtonType2"
+    android:layout_marginStart="8dp"/>
 
+    <!-- ButtonEditSite (SOPRA) -->
     <ImageButton
         android:id="@+id/ButtonEditSite"
         android:layout_width="60dp"
@@ -42,24 +51,40 @@
         android:onClick="ButtonEditSite"
         android:scaleType="fitCenter"
         android:src="@drawable/site_web"
-        app:layout_constraintTop_toTopOf="@id/ButtonColumns"
-        app:layout_constraintStart_toEndOf="@id/ButtonColumns"
-        android:layout_marginStart="20dp"/>
+    app:layout_constraintTop_toTopOf="@id/ButtonWeb"
 
+    app:layout_constraintStart_toStartOf="@id/ButtonWeb"
+    app:layout_constraintEnd_toEndOf="@id/ButtonWeb" />
 
-    <!-- TextView "Type" -->
-
+    <!-- 4. ButtonType2 -->
     <ImageButton
         android:id="@+id/ButtonType2"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="150dp"
         android:background="@drawable/button_rounded"
         android:onClick="ButtonType2"
         android:scaleType="fitCenter"
         android:src="@drawable/home2"
-        app:layout_constraintStart_toEndOf="@id/ButtonColumns"
-        app:layout_constraintTop_toTopOf="@id/ButtonColumns" />
+        app:layout_constraintTop_toTopOf="@id/ButtonColumns"
+
+        app:layout_constraintStart_toEndOf="@id/ButtonWeb"
+        app:layout_constraintEnd_toStartOf="@+id/ButtonTable"
+        android:layout_marginStart="8dp"/>
+
+
+    <ImageButton
+        android:id="@+id/ButtonTable"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_rounded"
+        android:onClick="ButtonTable"
+        android:scaleType="fitCenter"
+        android:src="@drawable/site_table"
+        app:layout_constraintTop_toTopOf="@id/ButtonColumns"
+
+        app:layout_constraintStart_toEndOf="@id/ButtonType2"
+        app:layout_constraintEnd_toStartOf="@+id/ButtonType1"
+        android:layout_marginStart="8dp"/>
 
     <ImageButton
         android:id="@+id/ButtonType1"
@@ -69,36 +94,43 @@
         android:onClick="ButtonType1"
         android:scaleType="fitCenter"
         android:src="@drawable/home1"
+        app:layout_constraintTop_toTopOf="@id/ButtonColumns"
+
+        app:layout_constraintStart_toEndOf="@id/ButtonTable"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/ButtonType2"
-        app:layout_constraintTop_toTopOf="@id/ButtonType2" />
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"/>
+
 
     <!-- RecyclerView per i siti -->
+
     <TextView
         android:id="@+id/textType"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Type"
         android:textColor="#444444"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ButtonColumns" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSites"
-        android:layout_width="390dp"
-        android:layout_height="617dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:clipToPadding="false"
-        android:padding="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textType"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

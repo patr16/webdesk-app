@@ -678,8 +678,8 @@ public class WebdeskDAO {
         return rowsAffected;
     }
 
-
-    // Aggiornamento record tramite WebdeskItem Update used ib ActivityWebdeskTable
+    //------------------------------------------------------------ Update for WebdeskTable (1)
+    // Aggiornamento record tramite WebdeskItem Update used by ActivityWebdeskTable
     public void updateWebdesk(WebdeskItem item) {
         SQLiteDatabase db = null;
         try {
@@ -716,6 +716,171 @@ public class WebdeskDAO {
     }
 
 
+    //------------------------------------------------------------ Update for WebdeskTable (2)
+    public boolean updateWebdeskItemField(int itemId, String fieldName, Object fieldValue) {
+        SQLiteDatabase db = null;
+        int rowsAffected = 0;
+        try {
+            db = dbHelper.getWritableDatabase(); // Ottieni un'istanza scrivibile del database
+            ContentValues values = new ContentValues();
+
+            if (fieldValue == null) {
+                values.putNull(fieldName);
+            } else if (fieldValue instanceof String) {
+                values.put(fieldName, (String) fieldValue);
+            } else if (fieldValue instanceof Integer) {
+                values.put(fieldName, (Integer) fieldValue);
+            } else if (fieldValue instanceof Long) { // Ad esempio per date memorizzate come long
+                values.put(fieldName, (Long) fieldValue);
+            } else if (fieldValue instanceof Double) {
+                values.put(fieldName, (Double) fieldValue);
+            } else if (fieldValue instanceof Float) {
+                values.put(fieldName, (Float) fieldValue);
+            } else if (fieldValue instanceof Boolean) { // SQLite non ha un tipo BOOLEAN, di solito si usa INTEGER 0 o 1
+                values.put(fieldName, ((Boolean) fieldValue) ? 1 : 0);
+            }
+            // Aggiungi altri tipi se necessario (es. byte[] per BLOB)
+            else {
+                Log.e("WebdeskDAO", "Tipo di campo non supportato per l'aggiornamento: " +
+                        fieldValue.getClass().getName() + " per il campo " + fieldName);
+                // Considera di chiudere il db qui se l'hai aperto in questo metodo e non c'è un finally generale
+                // if (db != null && db.isOpen()) db.close();
+                return false; // Tipo non gestito
+            }
+
+            // Esegui l'aggiornamento
+            rowsAffected = db.update("webdesk", values, "Id = ?", new String[]{String.valueOf(itemId)});
+
+        } catch (Exception e) {
+            Log.e("DB_UPDATE_FIELD", "Errore nell'aggiornamento del campo '" + fieldName +
+                    "' per l'ID " + itemId, e);
+            // if (db != null && db.isOpen()) db.close(); // Anche qui, in caso di eccezione
+            return false; // Errore durante l'operazione
+        } finally {
+            // Gestione della chiusura del database:
+            // È una buona pratica chiudere il database quando hai finito di usarlo
+            // per quella specifica operazione, specialmente se lo apri e chiudi per ogni metodo del DAO.
+            // Tuttavia, se il tuo dbHelper o un'altra parte della tua architettura gestisce
+            // un'istanza singola e condivisa del database (es. tramite un singleton per dbHelper),
+            // potresti non doverlo chiudere qui.
+            // Se dbHelper.getWritableDatabase() ti dà sempre una nuova istanza o la apre se chiusa,
+            // allora chiuderla qui è corretto.
+            // Se il tuo dbHelper è un singleton che mantiene aperta la connessione,
+            // chiuderla qui potrebbe causare problemi altrove.
+            //
+            // In base ai tuoi metodi DAO esistenti (updateWebdesk(WebdeskSite) e updateWebdesk(WebdeskItem)),
+            // sembra che tu stia aprendo e chiudendo il DB in ogni metodo, quindi è coerente farlo anche qui.
+            if (db != null && db.isOpen()) {
+                db.close();
+            }
+        }
+        // Restituisci true se almeno una riga è stata modificata, false altrimenti.
+        return rowsAffected > 0;
+    }
+
+
+    //------------------------------------------------------------ readAllWebdeskList for WebdeskTable
+    // Metodo usato nella WebdeskTableActivity
+    // Se filterType1Value è null o vuoto, restituisce tutti i record
+    // Altrimenti restituisce solo i record con Type1 = filterType1Value
+    public List<WebdeskItem> readAllWebdeskList(String filterType1Value) {
+        Cursor cursor = null;
+        SQLiteDatabase db = null;
+        List<WebdeskItem> list = new ArrayList<>();
+
+        try {
+            db = dbHelper.getReadableDatabase(); // Assumendo che dbHelper sia un membro della classe o accessibile
+
+            String sqlQuery;
+            String[] selectionArguments = null;
+
+            // Costruisci la query base con tutti i campi necessari per WebdeskItem
+            StringBuilder queryBuilder = new StringBuilder();
+            queryBuilder.append("SELECT ");
+            queryBuilder.append("Id, ");
+            queryBuilder.append("UserCod, ");
+            queryBuilder.append("Name, ");
+            queryBuilder.append("Url, ");
+            queryBuilder.append("Icon, ");
+            queryBuilder.append("Type1, ");
+            queryBuilder.append("Type2, ");
+            queryBuilder.append("Note, ");
+            queryBuilder.append("Order1, ");
+            queryBuilder.append("Order2, ");
+            queryBuilder.append("DateCreate, ");
+            queryBuilder.append("DateVisit, ");
+            queryBuilder.append("Frequency, ");
+            queryBuilder.append("TextColor, ");
+            queryBuilder.append("Background, ");
+            queryBuilder.append("Flag1, ");
+            queryBuilder.append("Flag2 ");
+            queryBuilder.append("FROM webdesk");
+
+            if (filterType1Value != null && !filterType1Value.isEmpty()) {
+                // Se è fornito un filtro per Type1, aggiungi la clausola WHERE
+                queryBuilder.append(" WHERE Type1 = ?");
+                selectionArguments = new String[]{filterType1Value};
+                Log.d("DB_READ", "Query con filtro Type1: " + filterType1Value);
+            } else {
+                Log.d("DB_READ", "Query senza filtro (tutti i record).");
+            }
+
+            // Aggiungi sempre l'ordinamento
+            queryBuilder.append(" ORDER BY Order1 ASC, Order2 ASC"); // Conferma che questo sia l'ordinamento desiderato
+
+            sqlQuery = queryBuilder.toString();
+            cursor = db.rawQuery(sqlQuery, selectionArguments);
+
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    WebdeskItem item = new WebdeskItem();
+
+                    item.setId(cursor.getInt(cursor.getColumnIndexOrThrow("Id")));
+                    item.setUserCod(cursor.isNull(cursor.getColumnIndexOrThrow("UserCod")) ? null :
+                            cursor.getInt(cursor.getColumnIndexOrThrow("UserCod")));
+                    item.setName(cursor.getString(cursor.getColumnIndexOrThrow("Name")));
+                    item.setUrl(cursor.getString(cursor.getColumnIndexOrThrow("Url")));
+                    item.setIcon(cursor.getString(cursor.getColumnIndexOrThrow("Icon")));
+                    item.setType1(cursor.getString(cursor.getColumnIndexOrThrow("Type1")));
+                    item.setType2(cursor.getString(cursor.getColumnIndexOrThrow("Type2")));
+                    item.setNote(cursor.getString(cursor.getColumnIndexOrThrow("Note")));
+                    item.setOrder1(cursor.isNull(cursor.getColumnIndexOrThrow("Order1")) ? null :
+                            cursor.getInt(cursor.getColumnIndexOrThrow("Order1")));
+                    item.setOrder2(cursor.isNull(cursor.getColumnIndexOrThrow("Order2")) ? null :
+                            cursor.getInt(cursor.getColumnIndexOrThrow("Order2")));
+                    item.setDateCreate(cursor.getString(cursor.getColumnIndexOrThrow("DateCreate")));
+                    item.setDateVisit(cursor.getString(cursor.getColumnIndexOrThrow("DateVisit")));
+                    item.setFrequency(cursor.isNull(cursor.getColumnIndexOrThrow("Frequency")) ? null :
+                            cursor.getInt(cursor.getColumnIndexOrThrow("Frequency")));
+                    item.setTextColor(cursor.getString(cursor.getColumnIndexOrThrow("TextColor")));
+                    item.setBackground(cursor.getString(cursor.getColumnIndexOrThrow("Background")));
+                    item.setFlag1(cursor.isNull(cursor.getColumnIndexOrThrow("Flag1")) ? null :
+                            cursor.getInt(cursor.getColumnIndexOrThrow("Flag1")));
+                    item.setFlag2(cursor.isNull(cursor.getColumnIndexOrThrow("Flag2")) ? null :
+                            cursor.getInt(cursor.getColumnIndexOrThrow("Flag2")));
+
+                    list.add(item);
+                }
+            }
+        } catch (Exception e) { // O SQLException più specifica
+            Log.e("DB_READ_ERROR", "Errore durante la lettura dal database: " + e.getMessage(), e);
+            // Restituisci una lista vuota in caso di errore per evitare crash nell'UI
+            // Potresti voler gestire l'errore in modo più specifico o propagarlo
+            return new ArrayList<>();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            // Non chiudere 'db' qui se dbHelper gestisce il ciclo di vita del database
+            // o se è passato dall'esterno e gestito altrove.
+            // Se WebdeskDAO è responsabile di aprire e chiudere il DB per ogni operazione,
+            // allora dovresti aggiungere db.close(); qui, controllando prima che non sia null.
+            // Tuttavia, è più comune che dbHelper gestisca la connessione.
+        }
+        return list;
+    }
+
+
     //------------------------------------------------------------ Delete a record Webdesk
     public int deleteWebdesk(int id) {
         int rowsDeleted = 0;
@@ -744,45 +909,6 @@ public class WebdeskDAO {
             if (db != null && db.isOpen()) db.close();
         }
     }
-
-        public List<WebdeskItem> readAllWebdeskList() {
-        Cursor cursor = readAllWebdesk();  // usa già l'ordinamento Order1 ASC, Order2 ASC
-        List<WebdeskItem> list = new ArrayList<>();
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
-                WebdeskItem item = new WebdeskItem();
-                item.setId(cursor.getInt(cursor.getColumnIndexOrThrow("Id")));
-                item.setUserCod(cursor.isNull(cursor.getColumnIndexOrThrow("UserCod")) ? null :
-                        cursor.getInt(cursor.getColumnIndexOrThrow("UserCod")));
-                item.setName(cursor.getString(cursor.getColumnIndexOrThrow("Name")));
-                item.setUrl(cursor.getString(cursor.getColumnIndexOrThrow("Url")));
-                item.setIcon(cursor.getString(cursor.getColumnIndexOrThrow("Icon")));
-                item.setType1(cursor.getString(cursor.getColumnIndexOrThrow("Type1")));
-                item.setType2(cursor.getString(cursor.getColumnIndexOrThrow("Type2")));
-                item.setNote(cursor.getString(cursor.getColumnIndexOrThrow("Note")));
-                item.setOrder1(cursor.isNull(cursor.getColumnIndexOrThrow("Order1")) ? null :
-                        cursor.getInt(cursor.getColumnIndexOrThrow("Order1")));
-                item.setOrder2(cursor.isNull(cursor.getColumnIndexOrThrow("Order2")) ? null :
-                        cursor.getInt(cursor.getColumnIndexOrThrow("Order2")));
-                item.setDateCreate(cursor.getString(cursor.getColumnIndexOrThrow("DateCreate")));
-                item.setDateVisit(cursor.getString(cursor.getColumnIndexOrThrow("DateVisit")));
-                item.setFrequency(cursor.isNull(cursor.getColumnIndexOrThrow("Frequency")) ? null :
-                        cursor.getInt(cursor.getColumnIndexOrThrow("Frequency")));
-                item.setTextColor(cursor.getString(cursor.getColumnIndexOrThrow("TextColor")));
-                item.setBackground(cursor.getString(cursor.getColumnIndexOrThrow("Background")));
-                item.setFlag1(cursor.isNull(cursor.getColumnIndexOrThrow("Flag1")) ? null :
-                        cursor.getInt(cursor.getColumnIndexOrThrow("Flag1")));
-                item.setFlag2(cursor.isNull(cursor.getColumnIndexOrThrow("Flag2")) ? null :
-                        cursor.getInt(cursor.getColumnIndexOrThrow("Flag2")));
-
-                list.add(item);
-            }
-            cursor.close();
-        }
-        return list;
-    }
-
-
 
     //============================================================== Message table
 
